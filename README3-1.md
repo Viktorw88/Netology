@@ -68,7 +68,7 @@ else
 fi ;
 ```
 12. Основываясь на знаниях о просмотре текущих (например, PATH) и установке новых переменных; командах, которые мы рассматривали, добейтесь в выводе type -a bash в виртуальной машине наличия первым пунктом в списке:
-Решение:
+Решение: http://joxi.ru/Q2KGZzMCyxdBP2 
 ```
 vagrant@vagrant:~$ mkdir /tmp/new_path_dir/
 vagrant@vagrant:~$ cp /bin/bash /tmp/new_path_dir/
@@ -81,7 +81,7 @@ bash is /tmp/new_path_dir/bash
 bash is /usr/bin/bash
 bash is /bin/bash
 ```
-http://joxi.ru/Q2KGZzMCyxdBP2
+
 
 13. Чем отличается планирование команд с помощью batch и at?
 Решение:
