@@ -16,7 +16,7 @@ Video:4mb
   v.cpus = 4
 
 или командами ВМ:
-
+```
    config.vm.provider "virtualbox" do |v|
 v.customize ["modifyvm", :id, "--cpus", "4"]
 end
@@ -24,7 +24,7 @@ end
    config.vm.provider "virtualbox" do |v|
 v.customize ["modifyvm", :id, "--memory", "4096"]
 end
-
+```
 7. Команда vagrant ssh из директории, в которой содержится Vagrantfile, позволит вам оказаться внутри виртуальной машины без каких-либо дополнительных настроек. 
 Попрактикуйтесь в выполнении обсуждаемых команд в терминале Ubuntu.
 Решение:
@@ -32,8 +32,8 @@ end
 
 8. Ознакомиться с разделами man bash, почитать о настройках самого bash:
 Решение: какой переменной можно задать длину журнала history, и на какой строчке manual это описывается?
-1. HISTFILESIZE - максимальное число строк в файле истории для сохранения, строка 939
-2. HISTSIZE - число команд для сохранения, строка 957 
+ HISTFILESIZE - максимальное число строк в файле истории для сохранения, строка 939
+ HISTSIZE - число команд для сохранения, строка 957 
  http://joxi.ru/gmvzXpGidPeKym
 
 Что делает директива ignoreboth в bash?
@@ -60,15 +60,16 @@ touch {000001..100000}.txt - создаст в текущей директори
 конструкция [[ -d /tmp ]] проверяет условие у "-d /tmp" и возвращает ее статус (0 или 1), наличие каталога /tmp
 
 Можно использовать как скрипт:
-
+```
 if [[ -d /tmp ]] ; then
     echo "catalog exists"
 else
     echo "no catalog"
 fi ;
-
+```
 12. Основываясь на знаниях о просмотре текущих (например, PATH) и установке новых переменных; командах, которые мы рассматривали, добейтесь в выводе type -a bash в виртуальной машине наличия первым пунктом в списке:
 Решение:
+```
 vagrant@vagrant:~$ mkdir /tmp/new_path_dir/
 vagrant@vagrant:~$ cp /bin/bash /tmp/new_path_dir/
 vagrant@vagrant:~$ type -a bash
@@ -79,7 +80,7 @@ vagrant@vagrant:~$ type -a bash
 bash is /tmp/new_path_dir/bash
 bash is /usr/bin/bash
 bash is /bin/bash
-
+```
 http://joxi.ru/Q2KGZzMCyxdBP2
 
 13. Чем отличается планирование команд с помощью batch и at?
