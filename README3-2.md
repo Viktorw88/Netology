@@ -31,4 +31,5 @@ vagrant@vagrant:~$ grep 123 textfile.txt |wc -l
 ```
 
 3. Какой процесс с PID 1 является родителем для всех процессов в вашей виртуальной машине Ubuntu 20.04?
-Ответ: ![alt text](http://joxi.ru/brRGxzbCLl1wLm) systemd(1)-VBoxService(863)
+Ответ: ![img](https://user-images.githubusercontent.com/94568542/148688518-0a20965a-c444-4240-9ae9-4a450603fb17.jpg) systemd(1)-VBoxService(863)
+
