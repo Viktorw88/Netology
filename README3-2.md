@@ -62,6 +62,13 @@ vagrant@vagrant:~$ ls: cannot access 'root': No such file or directory
 
 6. Получится ли вывести находясь в графическом режиме данные из PTY в какой-либо из эмуляторов TTY? Сможете ли вы наблюдать выводимые данные?
 
+```
+Ответ
+Вывести получится при использовании перенаправлении вывода:
+echo Hello from pts3 to tty3 >/dev/tty3
+Скриншот: 
+```
+![6](https://user-images.githubusercontent.com/94568542/148832025-f7de7511-12b4-411f-a1f5-95e3c7171d1d.jpg)
 
 
 7. Выполните команду bash 5>&1. К чему она приведет? Что будет, если вы выполните echo netology > /proc/$$/fd/5? Почему так происходит?
@@ -146,7 +153,8 @@ not a tty
 ```
 Ответ:
 При первых запусках ругался на права, 10-patrace.conf
-нашел что нужно установить значение  kernel.yama.ptrace_scope = 0 , использовал команду ```echo 0|sudo tee /proc/sys/kernel/yama/ptrace_scope```
+нашел что нужно установить значение  kernel.yama.ptrace_scope = 0 
+использовал команду echo 0|sudo tee /proc/sys/kernel/yama/ptrace_scope
 после чего процесс был перехвачен в screen, и продолжил работу после закрытия терминала. 
 В pstree процесс не отображался, точнее отображался в виде процесса reptyr. не сразу сообразил что это то, что нужно 
 ```
