@@ -69,14 +69,16 @@ vagrant@vagrant:~$ ls: cannot access 'root': No such file or directory
 bash 5>&1 - Создаст дескриптор с 5 и перенаправит его в stdout
 echo netology > /proc/$$/fd/5 - выведет в дескриптор "5", который был перенаправлен в stdout
 
-если запустить echo netology > /proc/$$/fd/5 в новой сесии, получим ошибку, так как такого дескриптора нет на данный момент в текущей(новой) сесии
+если запустить echo netology > /proc/$$/fd/5 в новой сессии, получим ошибку, так как такого дескриптора нет на данный момент в текущей(новой) сессии
     
 vagrant@vagrant:~$ echo netology > /proc/$$/fd/5
--bash: /proc/1096/fd/5: No such file or directory
+-bash: /proc/1507/fd/5: No such file or directory
 vagrant@vagrant:~$ bash 5>&1
 vagrant@vagrant:~$ echo netology > /proc.$$/fd/5
-bash: /proc.1114/fd/5: No such file or directory
+bash: /proc.1579/fd/5: No such file or directory
 vagrant@vagrant:~$ echo netology > /proc/$$/fd/5
 netology
 vagrant@vagrant:~$ 
 ```
+![7](https://user-images.githubusercontent.com/94568542/148802429-087023b3-7d5a-444f-87aa-777211470fcb.jpg)
+
