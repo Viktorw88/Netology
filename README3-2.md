@@ -65,7 +65,7 @@ vagrant@vagrant:~$ ls: cannot access 'root': No such file or directory
 ```
 Ответ
 Вывести получится при использовании перенаправлении вывода:
-echo Hello from pts3 to tty3 >/dev/tty3
+echo Hello from pts0 to tty1 >/dev/tty1
 Скриншот: 
 ```
 ![6](https://user-images.githubusercontent.com/94568542/148832025-f7de7511-12b4-411f-a1f5-95e3c7171d1d.jpg)
