@@ -33,7 +33,7 @@ vagrant@vagrant:~$ grep 123 textfile.txt |wc -l
 ```
 
 3. Какой процесс с PID 1 является родителем для всех процессов в вашей виртуальной машине Ubuntu 20.04?
-Ответ: ![img](https://user-images.githubusercontent.com/94568542/148688518-0a20965a-c444-4240-9ae9-4a450603fb17.jpg) systemd(1)-VBoxService(863)
+Ответ: ![img](https://user-images.githubusercontent.com/94568542/148688518-0a20965a-c444-4240-9ae9-4a450603fb17.jpg) С PID 1 - соответственно процесс systemd. Как видно по скриншоту самый первый процесс в дереве с PID в скобках - systemd(1). 
 
 4. Как будет выглядеть команда, которая перенаправит вывод stderr ls на другую сессию терминала?
 
