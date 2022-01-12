@@ -43,7 +43,7 @@ FILES
 Но размер растет:
 ```
 ![ping2](https://user-images.githubusercontent.com/94568542/149224634-596cb6ae-0d68-4aa7-9c1b-90a832ee26ed.jpg)
-
+```
 Ставим ограничение на размер файла pingxlog 5MB:
 vagrant@vagrant:~$ sudo truncate -s 5MB /proc/1380/fd/1
 
@@ -53,6 +53,7 @@ vagrant@vagrant:~$ sudo truncate -s 0 /proc/1380/fd/1
 Файл можно обнулить также следующим образом: 
 cat /dev/null > /proc/1380/fd/1
 ```
+
 4. Занимают ли зомби-процессы какие-то ресурсы в ОС (CPU, RAM, IO)?
 ```
 Ответ:
