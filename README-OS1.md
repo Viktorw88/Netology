@@ -21,15 +21,17 @@ vagrant@netology1:~$ file /bin/bash
 ```
 Ответ:
 Смотрим, что покажет file:
+```
 ![221](https://user-images.githubusercontent.com/94568542/149219768-f9359917-0718-4a92-8a6f-ce793dfe64fd.jpg)
-
+```
 Далее выполняем vagrant@vagrant:~$ strace -o file_log file /home/vagrant/. Сразу было сложно понять куда обращается file за поиском данных, но на странице man file есть упоминание:
 FILES
 /usr/share/misc/magic.mgc Default compiled list of magic.
 /usr/share/misc/magic Directory containing default magic files.
 Далее если сделать grep на файл вывода strace, то увидим что file именно туда и обращается(помимо библиотек):
-![22](https://user-images.githubusercontent.com/94568542/149220121-55b15180-4bd5-4181-987b-b123a0d79ead.jpg)
 ```
+![22](https://user-images.githubusercontent.com/94568542/149220121-55b15180-4bd5-4181-987b-b123a0d79ead.jpg)
+
 3. Предположим, приложение пишет лог в текстовый файл. Этот файл оказался удален (deleted в lsof), однако возможности сигналом сказать приложению переоткрыть файлы или просто перезапустить приложение – нет. Так как приложение продолжает писать в удаленный файл, место на диске постепенно заканчивается. Основываясь на знаниях о перенаправлении потоков предложите способ обнуления открытого удаленного файла (чтобы освободить место на файловой системе).
 ```
 Ответ:
