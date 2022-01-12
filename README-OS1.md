@@ -20,40 +20,42 @@ vagrant@netology1:~$ file /bin/bash
 Используя strace выясните, где находится база данных file на основании которой она делает свои догадки.
 ```
 Ответ:
-Файл базы типов - /usr/share/misc/magic.mgc
-в тексте это:
+Смотрим, что покажет file:
+![221](https://user-images.githubusercontent.com/94568542/149219768-f9359917-0718-4a92-8a6f-ce793dfe64fd.jpg)
 
-openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
-
-так же ищет пользовательские файлы, по всей видимости
-
-stat("/home/wizz/.magic.mgc", 0x7ffedefbea50) = -1 ENOENT (Нет такого файла или каталога)
-stat("/home/wizz/.magic", 0x7ffedefbea50) = -1 ENOENT (Нет такого файла или каталога)
-openat(AT_FDCWD, "/etc/magic.mgc", O_RDONLY) = -1 ENOENT (Нет такого файла или каталога)
-stat("/etc/magic", {st_mode=S_IFREG|0644, st_size=111, ...}) = 0
-openat(AT_FDCWD, "/etc/magic", O_RDONLY) = 3
+Далее выполняем vagrant@vagrant:~$ strace -o file_log file /home/vagrant/. Сразу было сложно понять куда обращается file за поиском данных, но на странице man file есть упоминание:
+FILES
+/usr/share/misc/magic.mgc Default compiled list of magic.
+/usr/share/misc/magic Directory containing default magic files.
+Далее если сделать grep на файл вывода strace, то увидим что file именно туда и обращается(помимо библиотек):
+![22](https://user-images.githubusercontent.com/94568542/149220121-55b15180-4bd5-4181-987b-b123a0d79ead.jpg)
 ```
 3. Предположим, приложение пишет лог в текстовый файл. Этот файл оказался удален (deleted в lsof), однако возможности сигналом сказать приложению переоткрыть файлы или просто перезапустить приложение – нет. Так как приложение продолжает писать в удаленный файл, место на диске постепенно заканчивается. Основываясь на знаниях о перенаправлении потоков предложите способ обнуления открытого удаленного файла (чтобы освободить место на файловой системе).
 ```
 Ответ:
-Пробовал с текстовым редактором vim
 
-vagrant@vagrant:~$ lsof -p 1805
+Делаем ping в файл pingxlog, удаляем pingxlog, убеждаемся что файл становится (deleted)
+![ping1](https://user-images.githubusercontent.com/94568542/149224606-4b17205b-5517-4461-b437-a8a8727a51a5.jpg)
+Но размер растет:
+![ping2](https://user-images.githubusercontent.com/94568542/149224634-596cb6ae-0d68-4aa7-9c1b-90a832ee26ed.jpg)
 
-vim      1805 vagrant    4u   REG  253,0    13548  106453 /home/vagrant/.text_file.swp (deleted)
-
-vagrant@vagrant:~$ echo '' >/proc/1805/fd/4
-где 1805 - PID процесса vim
-4 - дескриптор файла , который предварительно удалил. 
-Пример с PID vim: 
+Ставим ограничение на размер файла pingxlog 5MB:
 ```
-![2](https://user-images.githubusercontent.com/94568542/148836894-b65f0da2-5839-4649-a736-d6374cd5ba98.jpg)
-
+vagrant@vagrant:~$ sudo truncate -s 5MB /proc/1380/fd/1
+```
+Также можем очистить файл:
+```
+vagrant@vagrant:~$ sudo truncate -s 0 /proc/1380/fd/1
+```
+Файл можно обнулить еще таким образом: 
+```
+cat /dev/null > /proc/1380/fd/1
+```
 4. Занимают ли зомби-процессы какие-то ресурсы в ОС (CPU, RAM, IO)?
 ```
 Ответ:
-"Зомби" процессы, в отличие от "сирот", освобождают свои ресурсы, но не освобождают запись в таблице процессов. 
-Запись освободится при вызове wait() родительским процессом. 
+Зомби-процессы освобождают свои ресурсы, но не освобождают запись в таблице процессов, это может привести к тому что пользователь под которым они запущены не сможет запустить новые процессы. 
+Запись  в таблице процессов освободится при вызове wait() родительским процессом. 
 ```
 5. В iovisor BCC есть утилита opensnoop:
 ```
