@@ -48,11 +48,7 @@ CPU:
     node_cpu_seconds_total{cpu="1",mode="system"} 31.04
     node_cpu_seconds_total{cpu="1",mode="user"} 3.68
     process_cpu_seconds_total 
-```
-
-    ![2221](https://user-images.githubusercontent.com/94568542/149416851-002aa8d2-66c9-448b-ad95-010224a0aa85.jpg)
     
-```    
 Memory:
     node_memory_MemAvailable_bytes 
     node_memory_MemFree_bytes
@@ -69,6 +65,8 @@ Network(так же для каждого активного адаптера):
     node_network_transmit_bytes_total{device="eth0"}
     node_network_transmit_errs_total{device="eth0"}
 ```
+![2221](https://user-images.githubusercontent.com/94568542/149416851-002aa8d2-66c9-448b-ad95-010224a0aa85.jpg)
+
 
 3. Установите в свою виртуальную машину Netdata. Воспользуйтесь готовыми пакетами для установки (sudo apt install -y netdata). После успешной установки:
 в конфигурационном файле /etc/netdata/netdata.conf в секции [web] замените значение с localhost на bind to = 0.0.0.0,
@@ -103,7 +101,8 @@ config.vm.network "forwarded_port", guest: 19999, host: 19999
 Как настроен этот механизм по-умолчанию, и как изменить число процессов, которое можно создать в сессии?
 ```
 Ответ:
-Из предыдущих лекций ясно что это функция внутри "{}", судя по всему с именем ":" , которая после определения в строке запускает саму себя.
+Из предыдущих лекций ясно что это функция внутри "{}", судя по всему с именем ":", которая после определения 
+в строке запускает саму себя.
 Нашел информацию что функция пораждает два фоновых процесса самой себя
 Получается бинарное дерево плодящее процессы 
 
@@ -111,8 +110,8 @@ config.vm.network "forwarded_port", guest: 19999, host: 19999
 cgroup: fork rejected by pids controller in /user.slice/user-1000.slice/session-3.scope
 cgroup: fork rejected by pids controller in /user.slice/user-1000.slice/session-10.scope
 
-Судя по всему, система на основании этих файлов в пользовательской зоне ресурсов имеет определенное ограничение на создаваемые ресурсы 
-и соответственно при превышении начинает блокировать создание 
+Судя по всему, система на основании этих файлов в пользовательской зоне ресурсов имеет определенное ограничение 
+на создаваемые ресурсы и соответственно при превышении начинает блокировать создание 
 
 Если установить ulimit -u 40 - число процессов будет ограничено 40 для пользователя.
 ```
