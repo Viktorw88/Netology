@@ -62,6 +62,7 @@ end
 ![7](https://user-images.githubusercontent.com/94568542/149619384-ded96fba-009c-4cac-8370-cdbcd39e8af0.jpg)
 
 8. Создайте 2 независимых PV на получившихся md-устройствах.
+
 ![8](https://user-images.githubusercontent.com/94568542/149619386-84f849f4-f4e4-4011-9f8a-f02a860222e7.jpg)
 
 
@@ -73,26 +74,32 @@ root@vagrant:~# vgcreate vgr1 /dev/md1 /dev/md0
 
 root@vagrant:~# pvdisplay
 ```
+
 ![91](https://user-images.githubusercontent.com/94568542/149619402-72bcfb1f-fdcc-44a0-997d-df831b99e805.jpg)
 
 
 
 10. Создайте LV размером 100 Мб, указав его расположение на PV с RAID0.
+
 ![a10](https://user-images.githubusercontent.com/94568542/149619407-7066a04c-0d21-4977-ace0-975afa117ffd.jpg)
 
 11. Создайте mkfs.ext4 ФС на получившемся LV.
+
 ![a11](https://user-images.githubusercontent.com/94568542/149619409-4ac9e43c-2df5-4532-8146-bda2fa871572.jpg)
 
 ![ab11](https://user-images.githubusercontent.com/94568542/149619434-7020f5b1-0258-4028-8067-0ee02e4add61.jpg)
 
 
 12. Смонтируйте этот раздел в любую директорию, например, /tmp/new.
+
 ![a12](https://user-images.githubusercontent.com/94568542/149619411-be9f12a6-b670-465e-86e2-bfa50fa62cad.jpg)
 
 13. Поместите туда тестовый файл, например wget https://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz.
+
 ![a13](https://user-images.githubusercontent.com/94568542/149619413-6d773551-f742-4fcb-b60b-7f5597fcb517.jpg)
 
 14. Прикрепите вывод lsblk.
+
 ![a14](https://user-images.githubusercontent.com/94568542/149619416-96f2de6f-079b-4d35-a3f4-d9f5c1c3ee57.jpg)
 
 15. Протестируйте целостность файла:
@@ -101,6 +108,7 @@ root@vagrant:~# gzip -t /tmp/new/test.gz
 root@vagrant:~# echo $?
 0
 ```
+
 ![a15](https://user-images.githubusercontent.com/94568542/149619419-56f2a3c7-7aa2-4290-88ed-4c76b9f3bd61.jpg)
 
 
@@ -120,6 +128,7 @@ root@vagrant:~# gzip -t /tmp/new/test.gz
 root@vagrant:~# echo $?
 0
 ```
+
 ![a19](https://user-images.githubusercontent.com/94568542/149619430-34231b7b-f3bd-4dc4-98ae-a6a080ec4afe.jpg)
 
 
