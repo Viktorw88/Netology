@@ -20,7 +20,7 @@ vagrant@vagrant:~$ ls -ilh
 ![11](https://user-images.githubusercontent.com/94568542/149618626-b8b8b91c-5515-4847-86bf-6ad9da68e890.jpg)
 
 ```
-vagrant@vagrant:~$ chmod 0755 test_hl 
+vagrant@vagrant:~$ chmod 0755 hltest 
 vagrant@vagrant:~$ ls -ilh
 ```
 
