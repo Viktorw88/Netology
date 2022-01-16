@@ -58,3 +58,5 @@ origin:         AS42610
 ![7](https://user-images.githubusercontent.com/94568542/149669552-03004deb-028c-4da3-845d-d9fc7910723e.jpg)
 
 8. Проверьте PTR записи для IP адресов из задания 7. Какое доменное имя привязано к IP? воспользуйтесь утилитой dig
+![8](https://user-images.githubusercontent.com/94568542/149669754-91633945-556e-43af-bc1e-d71e0aedfdcb.jpg)
+dns.google
