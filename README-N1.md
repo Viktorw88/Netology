@@ -51,12 +51,16 @@ origin:         AS42610
 ![51](https://user-images.githubusercontent.com/94568542/149668545-6686ce05-9eed-4cb0-bbf1-52dda899f971.jpg)
 
 6. Повторите задание 5 в утилите mtr. На каком участке наибольшая задержка - delay?
+
 ![6](https://user-images.githubusercontent.com/94568542/149669021-e415d899-fa7c-4886-b6b0-4ff10e80ae2b.jpg)
+
 Худший результат - строка 4.
 
 7. Какие DNS сервера отвечают за доменное имя dns.google? Какие A записи? воспользуйтесь утилитой dig
 ![7](https://user-images.githubusercontent.com/94568542/149669552-03004deb-028c-4da3-845d-d9fc7910723e.jpg)
 
 8. Проверьте PTR записи для IP адресов из задания 7. Какое доменное имя привязано к IP? воспользуйтесь утилитой dig
+
 ![8](https://user-images.githubusercontent.com/94568542/149669754-91633945-556e-43af-bc1e-d71e0aedfdcb.jpg)
+
 dns.google
