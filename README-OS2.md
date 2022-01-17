@@ -7,7 +7,24 @@
 ```
 Ответ:
 Установил node_exporter, 
+
+"предусмотрите возможность добавления опций к запускаемому процессу через внешний файл (посмотрите, например, на systemctl cat cron)", 
+посмотрел пример с systemctl cat cron и доп. материалы, 
+![999](https://user-images.githubusercontent.com/94568542/149830196-1304f469-7cc4-488a-b4c0-1069add8e739.jpg)
+$OPTIONS - позволяет добавлять опции к запускаемому процессу через внешний файл
+
 Прописал unit файл:
+
+[Unit]
+Description=Node Exporter
+
+[Service]
+EnvironmentFile=-/etc/default/node_exporter
+ExecStart=/usr/local/bin/node_exporter $OPTIONS
+
+[Install]
+WantedBy=multi-user.target
+
 ```
 ![11](https://user-images.githubusercontent.com/94568542/149414602-9c9480d8-b493-42a4-9214-68eeb5fefcba.jpg)
 ```
