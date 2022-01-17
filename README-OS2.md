@@ -29,9 +29,6 @@ ExecStart=/usr/local/bin/node_exporter $OPTIONS
 [Install]
 WantedBy=multi-user.target
 
-```
-![11](https://user-images.githubusercontent.com/94568542/149414602-9c9480d8-b493-42a4-9214-68eeb5fefcba.jpg)
-```
 Перезапускаю сервис:
 $ sudo systemctl daemon-reload
 $ sudo systemctl start node_exporter
