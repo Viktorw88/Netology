@@ -83,11 +83,11 @@ for result in result_os.split('\n'):
     if result.find('fatal') != -1:
         print('\033[36m Каталог \033[1m '+cmd+'\033[0m\033[36m не является GIT репозиторием\033[0m')    
     if result.find('modified') != -1:
-        prep_result = result.replace('\tmodified: ', '')
+        prepare_result = result.replace('\tmodified: ', '')
 
-        prep_result = prep_result.replace(' ', '') 
+        prepare_result = prepare_result.replace(' ', '') 
         # replace-замена всех оставшихся пробелов в строке в выводе
-        print(cmd+prep_result)
+        print(cmd+prepare_result)
 #break
 print('\033[0m')
 ```
@@ -95,7 +95,7 @@ print('\033[0m')
 Добавлена обработка наличия входных параметров:
 при наличии параметра берется введенный каталог; 
 при отсутствии параметра берется текущий рабочий каталог; 
-при ошибке наличия GIT каталог отмечается ошибкой другого цвета
+при ошибке наличия git каталог отмечается ошибкой другого цвета
 
 ### Вывод скрипта при запуске при тестировании:
 
