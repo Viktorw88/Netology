@@ -65,12 +65,41 @@ for result in result_os.split('\n'):
 
 ### Ваш скрипт:
 ```python
+#!/usr/bin/env python3
 
+import os
+import sys
 
+cmd = os.getcwd()
+
+if len(sys.argv)>=2:
+    cmd = sys.argv[1]
+bash_command = ["cd "+cmd, "git status 2>&1"]
+
+print('\033[36m')
+result_os = os.popen(' && '.join(bash_command)).read()
+#is_change = False
+for result in result_os.split('\n'):
+    if result.find('fatal') != -1:
+        print('\033[36m Каталог \033[1m '+cmd+'\033[0m\033[36m не является GIT репозиторием\033[0m')    
+    if result.find('modified') != -1:
+        prep_result = result.replace('\tmodified: ', '')
+
+        prep_result = prep_result.replace(' ', '') 
+        # replace-замена всех оставшихся пробелов в строке в выводе
+        print(cmd+prep_result)
+#break
+print('\033[0m')
 ```
+
+Добавлена обработка наличия входных параметров:
+при наличии параметра берется введенный каталог; 
+при отсутствии параметра берется текущий рабочий каталог; 
+при ошибке наличия GIT каталог отмечается ошибкой другого цвета
 
 ### Вывод скрипта при запуске при тестировании:
 
+![35555](https://user-images.githubusercontent.com/94568542/150215145-3af5f4e8-1a1f-4409-8064-af8f48e7c84c.jpg)
 
 
 
@@ -79,10 +108,39 @@ for result in result_os.split('\n'):
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import socket as s
+import time as t
+import datetime as dt
+
+# ниже обозначаем переменные 
+i = 1
+wait = 3 # интервал проверок в секундах
+services = {'drive.google.com':'0.0.0.0', 'mail.google.com':'0.0.0.0', 'google.com':'0.0.0.0'}
+init=0
+
+print('script starts')
+print(services)
+print(' ')
+
+while 1==1 :  #число проверок для отладки
+  for host in services:
+    ip = s.gethostbyname(host)
+    if ip != services[host]:
+      if i==1 and init !=1:
+        print(str(dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")) +' [ERROR] ' + str(host) +' IP mistmatch: '+services[host]+' '+ip)
+      services[host]=ip
+# закомментировать для бесконечного цикла следующие 3 строки
+  i+=1 
+  if i >= 40 : 
+    break
+  t.sleep(wait)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
-```
-???
-```
+
+
+![444](https://user-images.githubusercontent.com/94568542/150223113-fef29daf-228b-4a24-b883-eca9cc18122a.jpg)
+
+
