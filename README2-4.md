@@ -79,5 +79,33 @@ git log -S 'func providerSource' --oneline
 
 6. Найдите все коммиты в которых была изменена функция `globalPluginDirs`.
 
+```
+Делаем  git grep 'func globalPluginDirs'
+Получаем plugins.go:func globalPluginDirs() []string {
+
+Далее поиск в git log где были изменены файл и функция:
+git log -L :'func globalPluginDirs':plugins.go --oneline
+
+В итоге найденные коммиты:
+78b122055
+52dbf9483
+```
+
+![66](https://user-images.githubusercontent.com/94568542/150360534-e3d38f95-2cdd-4d83-b0fb-3e20dafc6da9.jpg)
+
 
 7. Кто автор функции `synchronizedWriters`? 
+
+```
+git log -S 'func synchronizedWriters' --pretty=format:'%h - %an %ae'
+
+bdfea50cc - James Bardin j.bardin@gmail.com
+5ac311e2a - Martin Atkins mart@degeneration.co.uk
+
+Располагающиеся ниже коммиты "старше" верхних, поэтому автор функции Martin Atkins mart@degeneration.co.uk
+```
+
+![77](https://user-images.githubusercontent.com/94568542/150362071-e2a00515-b4ad-460f-aa94-1447bf5c8a4e.jpg)
+
+
+
