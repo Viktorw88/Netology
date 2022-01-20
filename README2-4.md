@@ -1,10 +1,13 @@
 1. Найдите полный хеш и комментарий коммита, хеш которого начинается на `aefea`.
 
+```
 Ответ:
 git show aefea 
 aefead2207ef7e2aa5dc81a34aedf0cad4c32545
 Комментарий коммита: Update CHANGELOG.md
+```
 
+![11](https://user-images.githubusercontent.com/94568542/150346807-1a94e74c-5001-4a84-8f32-cabb41bdd8bc.jpg)
 
 
 
