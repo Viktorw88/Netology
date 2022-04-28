@@ -26,6 +26,9 @@ Hey, Netology
 ```
 https://hub.docker.com/r/victorw88/html/tags
 ```
+![1](https://user-images.githubusercontent.com/94568542/165861520-0575ffe9-9913-4eb4-9f42-2193fc5c2611.jpg)
+
+
 
 ## Задача 2
 
