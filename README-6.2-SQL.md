@@ -175,6 +175,22 @@ select * from clients where booking is not null;
 (используя директиву EXPLAIN).
 
 Приведите получившийся результат и объясните что значат полученные значения.
+Ответ:
+```
+explain select * from clients as c where  exists (select id from orders as o where c.booking = o.id);
+Вариант 1
+Показывает cost-стоимость(время) на выполнение/нагрузку на исполнение запроса (неоптимальный в сравнении со вторым вариантом)
+Показывает шаги связи, и сбор сканирование таблиц после связи
+
+
+explain select * from clients where booking is not null;
+Вариант 2
+Так же показывает cost-стоимость(время) на выполнение/нагрузку на исполнение запроса, и фильтрацию по полю Booking для выборки.
+
+Как видно "Вариант 2" оптимальнее
+```
+![5](https://user-images.githubusercontent.com/94568542/167302067-5b2cfd13-6528-443d-a25c-1568e86c73a0.jpg)
+
 
 ## Задача 6
 
