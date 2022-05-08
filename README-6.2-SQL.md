@@ -12,6 +12,25 @@
 
 Приведите получившуюся команду или docker-compose манифест.
 
+Ответ:
+```
+docker pull postgres:12
+docker volume create vol2
+vol2
+docker volume create vol1
+vol1
+
+docker run --rm --name postgre-docker -e POSTGRES_PASSWORD=pwdpg -ti -p 5432:5432 -v vol1:/var/lib/postgresql/data -v vol2:/var/lib/postgresql postgres:12
+
+docker exec -it postgre-docker bash
+psql -U postgres
+
+postgres=# \l
+```
+![1](https://user-images.githubusercontent.com/94568542/167300206-d9d00a31-fa13-49b9-94ce-c7544d9c2efe.jpg)
+
+
+
 ## Задача 2
 
 В БД из задачи 1: 
