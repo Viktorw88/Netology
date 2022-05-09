@@ -27,6 +27,7 @@ services:
   postgressql:
     image: postgres:12-bullseye 
     container_name: postgre-docker
+    user: postgres
     environment:
       - PGDATA=/var/lib/postgresql/data/
       - POSTGRES_PASSWORD=pwdpg
@@ -220,6 +221,9 @@ explain select * from clients where booking is not null;
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
+Ответ:
+```
+
 
 psql -U postgres
 pg_dumpall > /backup/backup-pg
@@ -227,6 +231,15 @@ docker compose down
 скрин 61
 
 ---
+Для бэкапа данных:
+docker exec -t postgre-docker pg_dumpall -U postgres > /mnt/c/Users/Wizz/backup/dump2.sql 
+
+Далее после создания бэкапа:
+docker volume rm pgresdata
+
+Для восстановления:
+cat /mnt/c/Users/Wizz/backup/dump2.sql | docker exec -i pgdocker psql -U postgres
+```
 
 ### Как cдавать задание
 
