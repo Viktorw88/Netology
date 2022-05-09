@@ -14,6 +14,8 @@
 
 Ответ:
 ```
+docker-compose.yml: 
+
 version: "3.9"
 
 volumes:
@@ -31,11 +33,10 @@ services:
     volumes:
       - pgresdata:/var/lib/postgresql/data
       - backup:/backup
-      - ./config:/docker-entrypoint-initdb.d
     network_mode: "host"
- ```
+ 
     Далее:
-```
+
 docker-compose up -d    
 docker exec -it postgre-docker bash
 psql -U postgres
@@ -222,6 +223,8 @@ explain select * from clients where booking is not null;
 
 psql -U postgres
 pg_dumpall > /backup/backup-pg
+docker compose down
+скрин 61
 
 ---
 
