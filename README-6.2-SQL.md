@@ -27,7 +27,7 @@ services:
   postgressql:
     image: postgres:12-bullseye 
     container_name: postgre-docker
-    user: postgres
+    user: root
     environment:
       - PGDATA=/var/lib/postgresql/data/
       - POSTGRES_PASSWORD=pwdpg
