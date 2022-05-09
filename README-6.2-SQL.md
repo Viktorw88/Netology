@@ -27,7 +27,7 @@ services:
   postgressql:
     image: postgres:12-bullseye 
     container_name: postgre-docker
-    user: root
+    user: postgres
     environment:
       - PGDATA=/var/lib/postgresql/data/
       - POSTGRES_PASSWORD=pwdpg
@@ -44,7 +44,9 @@ psql -U postgres
 
 postgres=# \l
 ```
-![1](https://user-images.githubusercontent.com/94568542/167300206-d9d00a31-fa13-49b9-94ce-c7544d9c2efe.jpg)
+![1new](https://user-images.githubusercontent.com/94568542/167464772-a048e5ba-3982-45d9-a4b6-f8c8082a8e55.jpg)
+
+
 
 
 
@@ -223,19 +225,8 @@ explain select * from clients where booking is not null;
 
 Ответ:
 ```
-
-
-psql -U postgres
-pg_dumpall > /backup/backup-pg
-docker compose down
-скрин 61
-
----
 Для бэкапа данных:
 docker exec -t postgre-docker pg_dumpall -U postgres > /mnt/c/Users/Wizz/backup/dump2.sql 
-
-Далее после создания бэкапа:
-docker volume rm pgresdata
 
 Для восстановления:
 cat /mnt/c/Users/Wizz/backup/dump2.sql | docker exec -i pgdocker psql -U postgres
