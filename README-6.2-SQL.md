@@ -14,14 +14,29 @@
 
 Ответ:
 ```
-docker pull postgres:12
-docker volume create vol2
-vol2
-docker volume create vol1
-vol1
+version: "3.9"
 
-docker run --rm --name postgre-docker -e POSTGRES_PASSWORD=pwdpg -ti -p 5432:5432 -v vol1:/var/lib/postgresql/data -v vol2:/var/lib/postgresql postgres:12
+volumes:
+  pgresdata:  
+  backup:
 
+services:
+  
+  postgressql:
+    image: postgres:12-bullseye 
+    container_name: postgre-docker
+    environment:
+      - PGDATA=/var/lib/postgresql/data/
+      - POSTGRES_PASSWORD=pwdpg
+    volumes:
+      - pgresdata:/var/lib/postgresql/data
+      - backup:/backup
+      - ./config:/docker-entrypoint-initdb.d
+    network_mode: "host"
+ ```
+    Далее:
+```
+docker-compose up -d    
 docker exec -it postgre-docker bash
 psql -U postgres
 
@@ -203,6 +218,10 @@ explain select * from clients where booking is not null;
 Восстановите БД test_db в новом контейнере.
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
+
+
+psql -U postgres
+pg_dumpall > /backup/backup-pg
 
 ---
 
