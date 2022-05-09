@@ -229,7 +229,7 @@ explain select * from clients where booking is not null;
 docker exec -t postgre-docker pg_dumpall -U postgres > /mnt/c/Users/Wizz/backup/dump2.sql 
 
 Для восстановления:
-cat /mnt/c/Users/Wizz/backup/dump2.sql | docker exec -i pgdocker psql -U postgres
+cat /mnt/c/Users/Wizz/backup/dump2.sql | docker exec -i postgre-docker2 psql -U postgres
 ```
 
 ### Как cдавать задание
