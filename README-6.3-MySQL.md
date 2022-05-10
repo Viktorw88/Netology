@@ -100,13 +100,39 @@ GRANT SELECT ON test_db.orders TO 'test'@'localhost';
 Изучите файл `my.cnf` в директории /etc/mysql.
 
 Измените его согласно ТЗ (движок InnoDB):
-- Скорость IO важнее сохранности данных
-- Нужна компрессия таблиц для экономии места на диске
-- Размер буффера с незакомиченными транзакциями 1 Мб
-- Буффер кеширования 30% от ОЗУ
-- Размер файла логов операций 100 Мб
+- 1 Скорость IO важнее сохранности данных
+- 2 Нужна компрессия таблиц для экономии места на диске
+- 3 Размер буффера с незакомиченными транзакциями 1 Мб
+- 4 Буффер кеширования 30% от ОЗУ
+- 5 Размер файла логов операций 100 Мб
 
 Приведите в ответе измененный файл `my.cnf`.
+
+Ответ:
+```
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+secure-file-priv= NULL
+
+# 1
+innodb_flush_log_at_trx_commit = 0 
+
+# 2
+innodb_file_format = Barracuda
+
+# 3
+innodb_log_buffer_size = 1M
+
+# 4
+key_buffer_size = 1280М
+
+# 5
+max_binlog_size	= 100M
+```
+
+
 
 ---
 
