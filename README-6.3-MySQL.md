@@ -45,6 +45,30 @@
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+Ответ:
+
+Создание пользователя
+```
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'test-pass';
+
+ALTER USER 'test'@'localhost' ATTRIBUTE '{"fname":"James", "lname":"Pretty"}';
+
+ALTER USER 'test'@'localhost' 
+    -> IDENTIFIED BY 'test-pass' 
+    -> WITH
+    -> MAX_QUERIES_PER_HOUR 100
+    -> PASSWORD EXPIRE INTERVAL 180 DAY
+    -> FAILED_LOGIN_ATTEMPTS 3 PASSWORD_LOCK_TIME 2;
+```
+Предоставление прав доступа
+```
+GRANT SELECT ON test_db.orders TO 'test'@'localhost';
+```
+Данные по пользователю test
+![22](https://user-images.githubusercontent.com/94568542/167682248-5ad0f680-ba44-4822-bfad-b8748f24408f.jpg)
+
+
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
