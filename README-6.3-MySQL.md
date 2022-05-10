@@ -80,6 +80,17 @@ GRANT SELECT ON test_db.orders TO 'test'@'localhost';
 - на `MyISAM`
 - на `InnoDB`
 
+Ответ:
+ В таблице БД `test_db` используется engine InnoDB:
+![31](https://user-images.githubusercontent.com/94568542/167685240-b79fe72e-141e-449f-82c8-598a9ca511f4.jpg)
+
+
+Запросы на изменения из профайлера:
+![33](https://user-images.githubusercontent.com/94568542/167685384-cda0e390-6bf5-43a9-a14c-6f82b40bbb5d.jpg)
+Продолжительность переключения на MyISAM: 0.032
+Продолжительность переключения на InnoDB: 0.051
+
+
 ## Задача 4 
 
 Изучите файл `my.cnf` в директории /etc/mysql.
